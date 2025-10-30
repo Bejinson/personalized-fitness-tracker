@@ -15,3 +15,4 @@ Write-Host "Launched backend and frontend in separate PowerShell windows." -Fore
 Write-Host "If you prefer a single terminal, run these commands manually from the repository root:" -ForegroundColor Yellow
 Write-Host "  cd ./backend; npm install; npm start" -ForegroundColor Yellow
 Write-Host "  cd ./frontend; npm install; npm run dev" -ForegroundColor Yellow
+
