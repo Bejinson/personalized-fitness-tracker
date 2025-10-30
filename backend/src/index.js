@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/pft';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bejinsonb_db_user:deS3qIH0JUMFWNf7@cluster0.1glfmqw.mongodb.net/pft';
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
