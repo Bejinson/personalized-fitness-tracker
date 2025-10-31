@@ -1,19 +1,29 @@
-const app = require('./app');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./db.js";
 
 dotenv.config();
+const app = express();
 
-const PORT = process.env.PORT || 4000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bejinsonb_db_user:Cmj1TTxHPEHUhJtf@cluster0.1glfmqw.mongodb.net/?appName=Cluster0/pft';
+app.use(
+  cors({
+    origin: [
+      "https://personalized-fitness-tracker-frontend.onrender.com", // ✅ Your frontend domain
+      "http://localhost:5173" // optional, for local testing
+    ],
+    credentials: true,
+  })
+);
 
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log('Connected to MongoDB');
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}).catch(err => {
-  console.error('Mongo connection error', err);
-  process.exit(1);
+app.use(express.json());
+
+// Your routes...
+import authRoutes from "./routes/auth.js";
+app.use("/api/auth", authRoutes);
+
+// Connect DB and start server
+connectDB();
+app.listen(process.env.PORT || 4000, () => {
+  console.log(`✅ Server running on port ${process.env.PORT || 4000}`);
 });
